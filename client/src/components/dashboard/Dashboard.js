@@ -51,28 +51,6 @@ class Dashboard extends Component {
         awayAG: nextProps.schedule[this.state.defaultSelectValueAway].TA,
         awayYG: nextProps.schedule[this.state.defaultSelectValueAway].TY
       });
-
-      // const homeAG = nextProps.schedule[0].TA;
-      // const homeYG = nextProps.schedule[0].TY;
-      // const homeOMS = nextProps.schedule[0].TO;
-
-      // const awayAG = nextProps.schedule[1].TA;
-      // const awayYG = nextProps.schedule[1].TY;
-      // const awayOMS = nextProps.schedule[1].TO;
-
-      // this.setState({
-      //   leagueOMS: leagueOMS.toString(),
-      //   leagueHomeAG: leagueHomeAG.toString(),
-      //   leagueAwayAG: leagueAwayAG.toString(),
-      //   homeOMS: homeOMS,
-      //   homeAG: homeAG,
-      //   homeYG: homeYG,
-      //   awayOMS: awayOMS,
-      //   awayAG: awayAG,
-      //   awayYG: awayYG,
-      //   defaultSelectValueAway: '1',
-      //   defaultSelectValueHome: '0'
-      // });
     }
   }
 
