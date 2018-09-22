@@ -18,8 +18,8 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { country, isSaveMongo } = req.body;
-    const { schedule } = sheetToJson(country + '.xlsx');
-
+    //const { schedule } = sheetToJson(country + '.xlsx');
+    const schedule = {};
     if (isSaveMongo) {
       Tur.find().then(tur => {
         if (tur.length > 0) {
