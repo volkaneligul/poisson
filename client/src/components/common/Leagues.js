@@ -21,9 +21,10 @@ class Leagues extends Component {
     this.getLeagueData(e.target.value);
   };
 
-  getLeagueData = file => {
+  getLeagueData = country => {
     this.props.getSchedule({
-      file: file + '.xlsx'
+      country: country,
+      isSaveMongo: true
     });
   };
 
