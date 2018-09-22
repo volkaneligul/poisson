@@ -34,11 +34,11 @@ class Navbar extends Component {
     );
 
     const guestLinks = (
-      <div class="navbar-end">
-        <Link class="navbar-item " to="/login">
+      <div className="navbar-end">
+        <Link className="navbar-item " to="/login">
           Login
         </Link>
-        <Link class="navbar-item" to="/register">
+        <Link className="navbar-item" to="/register">
           Sign Up
         </Link>
       </div>
