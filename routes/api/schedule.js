@@ -18,8 +18,12 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { country, isSaveMongo } = req.body;
-    //const { schedule } = sheetToJson(country + '.xlsx');
     const schedule = {};
+
+    if (process.env.NODE_ENV !== 'production') {
+      schedule = sheetToJson(country + '.xlsx');
+    }
+
     if (isSaveMongo) {
       Tur.find().then(tur => {
         if (tur.length > 0) {
@@ -33,7 +37,7 @@ router.post(
               DG: obj.DG,
               DM: obj.DM,
               DO: obj.DO,
-              DPUAN: obj.DPUAN,
+              DPUAN: obj.DPuan,
               DY: obj.DY,
               IA: obj.IA,
               IAV: obj.IAV,
@@ -41,7 +45,7 @@ router.post(
               IG: obj.IG,
               IM: obj.IM,
               IO: obj.IO,
-              IPUAN: obj.IPUAN,
+              IPUAN: obj.IPuan,
               IY: obj.IY,
               Order: obj.Order,
               TA: obj.TA,
@@ -50,7 +54,7 @@ router.post(
               TG: obj.TG,
               TM: obj.TM,
               TO: obj.TO,
-              TPUAN: obj.TPUAN,
+              TPUAN: obj.TPuan,
               TY: obj.TY,
               Team: obj.Team
             });
