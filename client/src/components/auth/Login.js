@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
-import classnames from 'classnames';
+import TextFieldGroup from '../common/TextFieldGroup';
 
 class Login extends Component {
   state = {
@@ -11,9 +11,15 @@ class Login extends Component {
     errors: {}
   };
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/');
+      this.props.history.push('/dashboard');
     }
 
     if (nextProps.errors) {
@@ -48,39 +54,26 @@ class Login extends Component {
       <div className="box">
         <form className="form signin" onSubmit={this.onSubmit}>
           <p className="title is-1 is-spaced has-text-centered">Login</p>
-          <div className="field">
-            <label className="label">Email</label>
-            <div className="control">
-              <input
-                type="email"
-                name="email"
-                className={classnames('input', {
-                  'is-danger': errors.email
-                })}
-                value={this.state.email}
-                onChange={this.onChange}
-              />
-            </div>
-            {errors.email && <p className="help is-danger">{errors.email}</p>}
-          </div>
 
-          <div className="field">
-            <label className="label">Password</label>
-            <div className="control">
-              <input
-                type="password"
-                name="password"
-                className={classnames('input', {
-                  'is-danger': errors.password
-                })}
-                value={this.state.password}
-                onChange={this.onChange}
-              />
-            </div>
-            {errors.password && (
-              <p className="help is-danger">{errors.password}</p>
-            )}
-          </div>
+          <TextFieldGroup
+            label="Email"
+            placeholder="Email Address"
+            name="email"
+            type="email"
+            value={this.state.email}
+            onChange={this.onChange}
+            error={errors.email}
+          />
+
+          <TextFieldGroup
+            label="Şifre"
+            placeholder="Şifre"
+            name="password"
+            type="password"
+            value={this.state.password}
+            onChange={this.onChange}
+            error={errors.password}
+          />
 
           <div className="field">
             <div className="control">

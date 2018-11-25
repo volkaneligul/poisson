@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
-import classnames from 'classnames';
+import TextFieldGroup from '../common/TextFieldGroup';
 
 class Register extends Component {
   state = {
@@ -50,73 +50,39 @@ class Register extends Component {
       <div className="box">
         <form className="form signup" onSubmit={this.onSubmit}>
           <p className="title is-1 is-spaced has-text-centered">Register</p>
-          <div className="field">
-            <label className="label">Name</label>
-            <div className="control">
-              <input
-                type="text"
-                name="name"
-                className={classnames('input', {
-                  'is-danger': errors.name
-                })}
-                value={this.state.name}
-                onChange={this.onChange}
-              />
-            </div>
-            {errors.name && <p className="help is-danger">{errors.name}</p>}
-          </div>
 
-          <div className="field">
-            <label className="label">Email</label>
-            <div className="control">
-              <input
-                type="email"
-                name="email"
-                className={classnames('input', {
-                  'is-danger': errors.email
-                })}
-                value={this.state.email}
-                onChange={this.onChange}
-              />
-            </div>
-            {errors.email && <p className="help is-danger">{errors.email}</p>}
-          </div>
-
-          <div className="field">
-            <label className="label">Password</label>
-            <div className="control">
-              <input
-                type="password"
-                name="password"
-                className={classnames('input', {
-                  'is-danger': errors.password
-                })}
-                value={this.state.password}
-                onChange={this.onChange}
-              />
-            </div>
-            {errors.password && (
-              <p className="help is-danger">{errors.password}</p>
-            )}
-          </div>
-
-          <div className="field">
-            <label className="label">Password Repeat</label>
-            <div className="control">
-              <input
-                type="password"
-                name="password2"
-                className={classnames('input', {
-                  'is-danger': errors.password2
-                })}
-                value={this.state.password2}
-                onChange={this.onChange}
-              />
-            </div>
-            {errors.password2 && (
-              <p className="help is-danger">{errors.password2}</p>
-            )}
-          </div>
+          <TextFieldGroup
+            placeholder="Name"
+            name="name"
+            value={this.state.name}
+            onChange={this.onChange}
+            error={errors.name}
+          />
+          <TextFieldGroup
+            placeholder="Email"
+            name="email"
+            type="email"
+            value={this.state.email}
+            onChange={this.onChange}
+            error={errors.email}
+            info=""
+          />
+          <TextFieldGroup
+            placeholder="Password"
+            name="password"
+            type="password"
+            value={this.state.password}
+            onChange={this.onChange}
+            error={errors.password}
+          />
+          <TextFieldGroup
+            placeholder="Confirm Password"
+            name="password2"
+            type="password"
+            value={this.state.password2}
+            onChange={this.onChange}
+            error={errors.password2}
+          />
 
           <div className="field">
             <div className="control">
