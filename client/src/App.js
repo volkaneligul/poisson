@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import PrivateRoute from './components/common/PrivateRoute';
+import PrivateRouteVip from './components/common/PrivateRouteVip';
 import Landing from './components/layout/Landing';
 import Footer from './components/layout/Footer';
 import Login from './components/auth/Login';
@@ -18,6 +19,7 @@ import Register from './components/auth/Register';
 import Navbar from './components/layout/Navbar';
 import Dashboard from './components/dashboard/Dashboard';
 import Account from './components/account/Dashboard';
+import CreateProfile from './components/create-profile/CreateProfile';
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -49,8 +51,13 @@ class App extends Component {
             <Navbar />
             <Route exact path="/" component={Landing} />
             <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRouteVip exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/account" component={Account} />
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />
             </Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />

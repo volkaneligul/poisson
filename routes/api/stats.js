@@ -54,6 +54,7 @@ router.post(
       sum = 0;
 
     statsFields.user = req.user.id;
+    console.log(req);
 
     // GET HOME STATS
     if (req.body.homeOMS) statsFields.homeOMS = parseInt(req.body.homeOMS);

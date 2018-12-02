@@ -54,23 +54,26 @@ router.post(
     }
 
     Profile.findOne({ user: req.user.id }).then(profile => {
+      const date = new Date();
+      const dateMonth = date.getMonth();
       // Payment Info
       const newPayment = {
         paymenttype: req.body.paymenttype,
         selectedpackage: req.body.selectedpackage,
         selectedleagues: req.body.selectedleagues.split(','),
         selectedexpert: req.body.selectedexpert,
-        starteddate: req.body.starteddate,
-        endeddate: req.body.endeddate,
+        endeddate: date.setMonth(
+          dateMonth + parseInt(req.body.selectedpackage)
+        ),
         totalprice: req.body.totalprice,
-        status: req.body.status
+        status: true
       };
 
       if (!profile) {
         const profileFields = {};
 
         profileFields.user = req.user.id;
-        profileFields.vip = req.body.vip;
+        profileFields.vip = false;
         profileFields.paymentinfo = newPayment;
 
         // Save Profile
@@ -80,7 +83,7 @@ router.post(
       ) {
         return res
           .status(400)
-          .json({ alreadyactive: 'User already active status' });
+          .json({ alreadyactive: 'Aktif bir profiliniz bulunuyor!' });
       } else {
         // Add to payment array
         profile.paymentinfo.unshift(newPayment);

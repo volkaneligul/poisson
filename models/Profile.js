@@ -26,7 +26,8 @@ const ProfileSchema = new Schema({
         type: String
       },
       starteddate: {
-        type: Date
+        type: Date,
+        default: Date.now
       },
       endeddate: {
         type: Date
