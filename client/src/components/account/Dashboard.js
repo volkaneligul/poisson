@@ -34,15 +34,6 @@ class Dashboard extends Component {
             <div style={{ marginBottom: '60px' }} />
 
             <Payment payment={profile.paymentinfo} />
-
-            <div style={{ marginBottom: '60px' }} />
-            <button
-              onClick={this.onDeleteClick.bind(this)}
-              className="btn btn-danger"
-            >
-              Hesabı Sil
-            </button>
-            <div style={{ marginBottom: '60px' }} />
           </div>
         );
       } else {

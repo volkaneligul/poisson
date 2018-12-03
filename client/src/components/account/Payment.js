@@ -21,12 +21,23 @@ class Payment extends Component {
         <td>
           <Moment format="YYYY/MM/DD">{item.endeddate}</Moment>
         </td>
-        <td>{item.status ? 'Aktif' : 'Pasif'}</td>
+        <td>
+          {item.status === '0'
+            ? 'Bekliyor'
+            : item.status === '1'
+            ? 'Aktif'
+            : 'Pasif'}
+        </td>
+        <td>{item.vipcode}</td>
       </tr>
     ));
     return (
       <div>
         <h4 className="mb-4">Ödeme Bilgileri</h4>
+        <p>
+          <strong>Vip kodu</strong>'unuzu Havale/EFT ödemesi için açıklama
+          alanında kullanabilirsiniz.
+        </p>
         <table className="table">
           <thead>
             <tr>
@@ -38,6 +49,7 @@ class Payment extends Component {
               <th>Başlangıç Tarihi</th>
               <th>Bitiş Tarihi</th>
               <th>Durumu</th>
+              <th>Vip Kodu</th>
               <th />
             </tr>
             {payment}

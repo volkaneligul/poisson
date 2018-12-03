@@ -7,10 +7,6 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
-  vip: {
-    type: Boolean,
-    default: false
-  },
   paymentinfo: [
     {
       paymenttype: {
@@ -36,7 +32,10 @@ const ProfileSchema = new Schema({
         type: String
       },
       status: {
-        type: Boolean
+        type: String
+      },
+      vipcode: {
+        type: String
       }
     }
   ],

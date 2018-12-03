@@ -6,6 +6,9 @@ const passport = require('passport');
 // Load Validation
 const validateProfileInput = require('../../validation/profile');
 
+// Generate VipCode
+const generateCode = require('../../utils/generate-code');
+
 // Load Profile Model
 const Profile = require('../../models/Profile');
 // Load User Model
@@ -46,6 +49,7 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validateProfileInput(req.body);
+    const vipCode = generateCode();
 
     // Check Validation
     if (!isValid) {
@@ -66,14 +70,14 @@ router.post(
           dateMonth + parseInt(req.body.selectedpackage)
         ),
         totalprice: req.body.totalprice,
-        status: true
+        status: '0',
+        vipcode: vipCode
       };
 
       if (!profile) {
         const profileFields = {};
 
         profileFields.user = req.user.id;
-        profileFields.vip = false;
         profileFields.paymentinfo = newPayment;
 
         // Save Profile
